@@ -120,6 +120,18 @@ class ComposerScripts {
         $io->write("<info>Allow php-http/discovery</info>");
         $composerJson['config']['allow-plugins']['php-http/discovery'] = true;
       }
+
+      // allow tbachert/spi
+      if(! isset($composerJson['config']['allow-plugins']['tbachert/spi'])) {
+        $io->write("<info>Allow tbachert/spi</info>");
+        $composerJson['config']['allow-plugins']['tbachert/spi'] = true;
+      }
+
+      // Don't add recipes/README.txt on scaffold
+      if(! isset($composerJson['extra']['drupal-scaffold']['file-mapping']['[project-root]/recipes/README.txt'])) {
+        $composerJson['extra']['drupal-scaffold']['file-mapping']['[project-root]/recipes/README.txt'] = false;
+      }
+
     }
 
     if(serialize($composerJson) == serialize($originalComposerJson)) {
